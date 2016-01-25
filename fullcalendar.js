@@ -10693,8 +10693,8 @@ function EventManager(options) { // assumed to be a calendar
 		var optionVal = options.businessHours;
 		var defaultVal = {
 			className: 'fc-nonbusiness',
-			start: '09:00',
-			end: '17:00',
+			start: '08:00',
+			end: '22:00',
 			dow: [ 1, 2, 3, 4, 5 ], // monday - friday
 			rendering: 'inverse-background'
 		};
