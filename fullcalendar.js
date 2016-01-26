@@ -10691,6 +10691,8 @@ function EventManager(options) { // assumed to be a calendar
 	// Abuse of our event system :(
 	function getBusinessHoursEvents(wholeDay) {
 		var optionVal = options.businessHours;
+		var nowDate = new Date();
+		var nowTime = (nowDate.getTime() / 1000) - 28800;
 		var defaultVal = {
 			className: 'fc-nonbusiness',
 			start: '08:00',
@@ -10789,6 +10791,7 @@ function EventManager(options) { // assumed to be a calendar
 		var peerEvents;
 		var i, peerEvent;
 		var peerOverlap;
+		
 
 		// the range must be fully contained by at least one of produced constraint events
 		if (constraint != null) {
@@ -10871,10 +10874,16 @@ function EventManager(options) { // assumed to be a calendar
 	// Does the event's date range fully contain the given range?
 	// start/end already assumed to have stripped zones :(
 	function eventContainsRange(event, range) {
-		var eventStart = event.start.clone().stripZone();
+		var nowDate = new Date();
+		var nowTime = (nowDate.getTime() / 1000) - 28800; //have to subtract 8 hours because of UTC time here...need to fix this
+        var eventStart = new Date(event.start);
+        var eventStartTime = eventStart.getTime() / 1000;
+		var rangeStart = range.start.getTime() / 1000;
+		//var rangeEnd = range.end.getTime() / 1000;
+		//var eventStart = event.start.clone().stripZone();
 		var eventEnd = t.getEventEnd(event).stripZone();
 
-		return range.start >= eventStart && range.end <= eventEnd;
+		return range.start >= eventStart && range.end <= eventEnd && eventStart >= nowTime;
 	}
 
 
