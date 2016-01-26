@@ -10878,9 +10878,9 @@ function EventManager(options) { // assumed to be a calendar
 		var nowTime = (nowDate.getTime() / 1000) - 28800; //have to subtract 8 hours because of UTC time here...need to fix this
         var eventStart = new Date(event.start);
         var eventStartTime = eventStart.getTime() / 1000;
-		var rangeStart = range.start.getTime() / 1000;
+		//var rangeStart = range.start.getTime() / 1000;
 		//var rangeEnd = range.end.getTime() / 1000;
-		//var eventStart = event.start.clone().stripZone();
+		var eventStart = event.start.clone().stripZone();
 		var eventEnd = t.getEventEnd(event).stripZone();
 
 		return range.start >= eventStart && range.end <= eventEnd;
