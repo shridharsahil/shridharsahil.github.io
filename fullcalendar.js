@@ -10883,7 +10883,7 @@ function EventManager(options) { // assumed to be a calendar
 		//var eventStart = event.start.clone().stripZone();
 		var eventEnd = t.getEventEnd(event).stripZone();
 
-		return range.start >= eventStart && range.end <= eventEnd && eventStart >= nowTime;
+		return range.start >= eventStart && range.end <= eventEnd;
 	}
 
 
